@@ -15,7 +15,6 @@ public class EnvController {
     private String cfInstanceIdx;
     private String cfInstanceAddr;
 
-
     public EnvController(
             @Value("${PORT:NOT SET}") String port,
             @Value("${MEMORY_LIMIT:NOT SET}") String memoryLimit,
@@ -31,13 +30,13 @@ public class EnvController {
     @GetMapping("/env")
     public Map<String, String> getEnv() {
 
-        Map<String, String> test = new HashMap<>();
+        Map<String, String> env = new HashMap<>();
 
-        test.put("PORT", port);
-        test.put("MEMORY_LIMIT", memoryLimit);
-        test.put("CF_INSTANCE_INDEX", cfInstanceIdx);
-        test.put("CF_INSTANCE_ADDR", cfInstanceAddr);
+        env.put("PORT", port);
+        env.put("MEMORY_LIMIT", memoryLimit);
+        env.put("CF_INSTANCE_INDEX", cfInstanceIdx);
+        env.put("CF_INSTANCE_ADDR", cfInstanceAddr);
 
-        return test;
+        return env;
     }
 }
