@@ -9,6 +9,11 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+
+
     /**
 //    compile "org.springframework.boot:spring-boot-starter"
     compile 'org.springframework.boot:spring-boot:1.5.4.RELEASE'
@@ -21,3 +26,12 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-tomcat"
  **/
 }
+bootRun.environment([
+        "WELCOME_MESSAGE": "hello",
+])
+
+test.environment([
+        "WELCOME_MESSAGE": "Hello from test",
+])
+
+
