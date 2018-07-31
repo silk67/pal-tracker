@@ -7,7 +7,6 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
     private List<TimeEntry> entries = new ArrayList<TimeEntry>();
     private long currentId;
 
-
     @Override
     public TimeEntry create(TimeEntry timeEntry) {
 //        if (this.find(timeEntry.getId()) != null) this.delete(timeEntry.getId());
