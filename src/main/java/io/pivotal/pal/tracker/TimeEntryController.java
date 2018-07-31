@@ -19,7 +19,7 @@ public class TimeEntryController {
         return new ResponseEntity(timeEntryRepository.create(timeEntryToCreate), HttpStatus.CREATED);
     }
 
-    @PutMapping("/time-entries/{id}")
+    @PutMapping(value="/time-entries/{id}")
     public ResponseEntity update(@PathVariable long id, @RequestBody TimeEntry timeEntryToCreate) {
         TimeEntry res = timeEntryRepository.update(id, timeEntryToCreate);
         if (res == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -37,6 +37,11 @@ public class TimeEntryController {
         TimeEntry res = timeEntryRepository.find(id);
         if (res == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
         return new ResponseEntity(res, HttpStatus.OK);
+    }
+
+    @GetMapping(value="/time-entries", headers="X-api-version=2.0")
+    public ResponseEntity<String> list2_0() {
+        return new ResponseEntity("Some Version 2.0 content", HttpStatus.OK);
     }
 
     @GetMapping("/time-entries")
