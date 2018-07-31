@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/time-entries")
 public class TimeEntryControllerv2 {
     TimeEntryRepository timeEntryRepository;
 
@@ -14,37 +15,37 @@ public class TimeEntryControllerv2 {
         this.timeEntryRepository = timeEntryRepository;
     }
 
-    @PostMapping(value="/time-entries", headers="X-api-version=2.0")
+    @PostMapping(headers="X-api-version=2.0")
     public ResponseEntity create(@RequestBody TimeEntry timeEntryToCreate) {
         return new ResponseEntity(timeEntryRepository.create(timeEntryToCreate), HttpStatus.CREATED);
     }
 
-    @PutMapping(value="/time-entries/{id}", headers="X-api-version=2.0")
+    @PutMapping(value="/{id}", headers="X-api-version=2.0")
     public ResponseEntity update(@PathVariable long id, @RequestBody TimeEntry timeEntryToCreate) {
         TimeEntry res = timeEntryRepository.update(id, timeEntryToCreate);
         if (res == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
         return new ResponseEntity(res, HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/time-entries/{id}", headers="X-api-version=2.0")
+    @DeleteMapping(value="/{id}", headers="X-api-version=2.0")
     public ResponseEntity<TimeEntry> delete(@PathVariable long id) {
         timeEntryRepository.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value="/time-entries/{id}", headers="X-api-version=2.0")
+    @GetMapping(value="/{id}", headers="X-api-version=2.0")
     public ResponseEntity<TimeEntry> read(@PathVariable long id) {
         TimeEntry res = timeEntryRepository.find(id);
         if (res == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
         return new ResponseEntity(res, HttpStatus.OK);
     }
 
-    @GetMapping(value="/time-entries", headers="X-api-version=2.0")
+    @GetMapping(headers="X-api-version=2.0")
     public ResponseEntity<String> NoList() {
         return new ResponseEntity("Some Version 2.0 content", HttpStatus.OK);
     }
 
-    @GetMapping(value="/time-entries/status", headers="X-api-version=2.0")
+    @GetMapping(value="/status", headers="X-api-version=2.0")
     public ResponseEntity<String> status() {
         return new ResponseEntity("Statused", HttpStatus.OK);
     }
