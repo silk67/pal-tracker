@@ -36,6 +36,7 @@ test.environment([
         "MANAGEMENT_SECURITY_ENABLED": false,
 ])
 
+
 flyway {
     url = developmentDbUrl
     user = "tracker"
